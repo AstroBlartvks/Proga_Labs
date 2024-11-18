@@ -1,5 +1,3 @@
-import Exceptions.QuantityIsZeroException;
-
 public class Item {
     private final String name;
     private final ItemTypes type;
