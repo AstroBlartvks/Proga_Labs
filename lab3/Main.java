@@ -32,22 +32,22 @@ public class Main {
 
 //Автор показывает багаж
         author.think("У меня есть");
-        author.inventory.show();
+        author.showInventory();
 
 //Автор берет вещи с корабля
         Room captainRoom = steamboat.enterRoom("Комната капитана");
 
-        while (!captainRoom.chest.isEmpty()){
+        while (!captainRoom.getStorage().isEmpty()){
             Item item = captainRoom.randomPop();
-            author.append(item.name, item);
+            author.append(item.getName(), item);
         }
 
 //Автор забрасывает вещи к себе в каютy
         Room myRoom = steamboat.enterRoom("Комната автора");
 
-        while (!author.inventory.isEmpty()){
+        while (!author.getStorage().isEmpty()){
             Item item = author.randomPop();
-            myRoom.append(item.name, item);
+            myRoom.append(item.getName(), item);
         }
 
 //Автор говорит о том, что на корабле не только он один:
@@ -92,20 +92,20 @@ public class Main {
             ink = author.pop("чернила");
             paper = author.pop("бумага");
             feather = author.pop("перья");
-            author.writeable = author.interact("готовиться писать", paper);
-            author.writeable = author.interact("готовиться писать", ink);
-            author.writeable = author.interact("пишет", feather);
+            author.setWritable(author.interact("готовиться писать", paper));
+            author.setWritable(author.interact("готовиться писать", ink));
+            author.setWritable(author.interact("пишет", feather));
             author.append("чернила", ink);
             author.append("бумага", paper);
             author.append("перья", feather);
             days--;
-        } while ( days > 0 );
+        } while ( days > 0 && author.isWriteable());
 
         System.out.println("\nЧАСТЬ 5\n");
 
         //Огромный склад
         author.think("Много у меня вещей");
-        author.inventory.show();
+        author.showInventory();
 
 //Пытаемся использовать лопату, заступ, кирку, но их нет
 //Здесь будут вызваны ошибки, так как у автора нет лопаты, заступа и т.д

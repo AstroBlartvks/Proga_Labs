@@ -1,6 +1,6 @@
 
 public abstract class Animal extends Entity{
-    Person master;
+    protected Person master;
 
     public void trust(Person human){
         human.tame(this);

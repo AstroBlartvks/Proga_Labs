@@ -7,12 +7,28 @@ import static java.lang.Math.abs;
 import static java.lang.Math.random;
 
 public class Person extends Entity implements Popable, Containable, Swimable{
-    Storage inventory = new Storage();
-    List<Animal> pets = new ArrayList<>();
-    boolean writeable = false;
+    private Storage inventory = new Storage();
+    private List<Animal> pets = new ArrayList<>();
+    private boolean writeable = false;
 
     public Person(String name){
         this.stats = new EntityStats(name, EntityTypes.HUMAN);
+    }
+
+    public Storage getStorage(){
+        return this.inventory;
+    }
+
+    public void showInventory(){
+        getStorage().show();
+    }
+
+    public boolean isWriteable(){
+        return this.writeable;
+    }
+
+    public void setWritable(boolean writeable){
+        this.writeable = writeable;
     }
 
     public void think(String thoughts) {
@@ -27,8 +43,8 @@ public class Person extends Entity implements Popable, Containable, Swimable{
         }
     }
     public void useItem(Item item) throws HasNoItemToInteractException {
-        if (inventory.exist(item.name)){
-            throw new HasNoItemToInteractException(item.name);
+        if (inventory.exist(item.getName())){
+            throw new HasNoItemToInteractException(item.getName());
         }
         item.use();
     }
@@ -38,15 +54,15 @@ public class Person extends Entity implements Popable, Containable, Swimable{
     }
 
     public boolean interact(String act, Item tool) throws HasNoItemToInteractException {
-        if (inventory.exist(tool.name)){
-            throw new HasNoItemToInteractException(tool.name);
+        if (inventory.exist(tool.getName())){
+            throw new HasNoItemToInteractException(tool.getName());
         }
-        if (tool.type == ItemTypes.NOTHING){
-            System.out.println("Нет такого предмета: "+tool.name+", чтобы соверишть действие: "+act);
+        if (tool.getType() == ItemTypes.NOTHING){
+            System.out.println("Нет такого предмета: "+tool.getName()+", чтобы соверишть действие: "+act);
             return false;
         }
         tool.use();
-        System.out.println(this.stats.getName()+" выпонил действие "+act+", используя "+tool.name);
+        System.out.println(this.stats.getName()+" выпонил действие "+act+", используя "+tool.getName());
         return true;
     }
 
@@ -63,7 +79,7 @@ public class Person extends Entity implements Popable, Containable, Swimable{
     @Override
     public void appends(Item ... item) {
         for (Item i : item){
-            this.inventory.append(i.name, i);
+            this.inventory.append(i.getName(), i);
         }
     }
 

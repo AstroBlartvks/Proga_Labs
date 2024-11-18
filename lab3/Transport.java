@@ -3,8 +3,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public abstract class Transport{
-    public String title;
-    List<Entity> entities = new ArrayList<>();
+    private String title;
+    protected List<Entity> entities = new ArrayList<>();
 
     public Transport(String title){
         this.title = title;

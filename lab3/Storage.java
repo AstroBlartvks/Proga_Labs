@@ -12,14 +12,14 @@ public class Storage {
         for (Map.Entry<String, Item> entry : this.inventory.entrySet()){
             String key = entry.getKey();
             Item item = entry.getValue();
-            System.out.println("Предмет: " + key + ", В количестве: " + item.quantity);
+            System.out.println("Предмет: " + key + ", В количестве: " + item.getQuantity());
         }
     }
     public boolean isEmpty(){
         return this.inventory.isEmpty();
     }
     public int amount(String name){
-        return inventory.get(name).quantity;
+        return inventory.get(name).getQuantity();
     }
     public void append(String name, Item item){
         inventoryNames.add(name);

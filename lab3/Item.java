@@ -1,14 +1,26 @@
 import Exceptions.QuantityIsZeroException;
 
 public class Item {
-    String name;
-    ItemTypes type;
-    int quantity;
+    private final String name;
+    private final ItemTypes type;
+    private int quantity;
 
     public Item(String name, ItemTypes type, int quantity){
         this.name = name;
         this.type = type;
         this.quantity = quantity;
+    }
+
+    public int getQuantity(){
+        return this.quantity;
+    }
+
+    public ItemTypes getType(){
+        return this.type;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public void use() throws QuantityIsZeroException {

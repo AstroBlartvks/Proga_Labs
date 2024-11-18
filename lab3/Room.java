@@ -1,9 +1,17 @@
 public class Room implements Popable, Containable{
-    String name;
-    Storage chest = new Storage();
+    private final String name;
+    private Storage chest = new Storage();
 
     public Room(String name){
         this.name = name;
+    }
+
+    public Storage getStorage(){
+        return this.chest;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     @Override
@@ -23,7 +31,7 @@ public class Room implements Popable, Containable{
     @Override
     public void appends(Item ... item) {
         for (Item i : item){
-            this.chest.append(i.name, i);
+            this.chest.append(i.getName(), i);
         }
     }
 

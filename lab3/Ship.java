@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 public class Ship extends Transport{
-    HashMap<String, Room> rooms = new HashMap<>();
+    private HashMap<String, Room> rooms = new HashMap<>();
 
     public Ship(String title) {
         super(title);
@@ -9,7 +9,7 @@ public class Ship extends Transport{
 
     public void addRoom(Room ... room){
         for (Room r : room){
-            rooms.put(r.name, r);
+            rooms.put(r.getName(), r);
         }
     }
     public Room enterRoom(String roomName){
