@@ -1,0 +1,9 @@
+public enum ItemTypes {
+    WRITING_MATERIALS,
+    GEOGRAPHIC_TOOLS,
+    ASTRONOMIC_TOOLS,
+    BOOKS,
+    TOOLS,
+    REPAIR_TOOLS,
+    NOTHING
+}
